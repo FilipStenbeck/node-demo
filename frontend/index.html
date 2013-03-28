@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="seven times X is...">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap-responsive.css">
+      
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+      
+     
+        
+        <div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+						<ul class="nav" style="float:right;">
+							<li><a href="#myModal" data-toggle="modal">About</a></li>
+						</ul>
+					
+				</div>
+			</div>
+		</div>
+        
+        <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h3 id="myModalLabel">About</h3>
+				</div>
+				<div class="modal-body">
+					<p>This is the frontend for a small demo of using a Node.js RESTfull server  for a CRUD-application</p>
+                    <p>
+                        <a href="http://www.linkedin.com/profile/view?id=12116865&amp;trk" target="top"><img src="img/LinkedInButton.JPG" width="55"></a> &nbsp; 
+                        <a href="https://twitter.com/FilipStenbeck" target="top"><img src="img/twitter-bird-light-bgs.png" width="65"></a>
+                        <a href="https://github.com/FilipStenbeck/min-plats/" target="top"><img src="img/github-logo-transparent.png" width="65"></a>
+                    </p>
+                </div>
+				<div class="modal-footer">
+                </div>
+			</div>
+        
+        <div id="app_container">
+      
+            <div class="row default-margin">
+                <div class="span5 offset1">
+                    <table  id="user-table" class="table table-bordered table-striped ">        
+                        <thead> 
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody> 
+                          
+                        </tbody> 
+                    </table>
+                </div>
+            </div>
+            
+             <div class="row default-margin">
+                   <div class="span10 offset1">
+                    <form id="new-user-form" class="form-inline" onsubmit="app.userView.newUser()" action="#">
+                      <fieldset>
+                        <legend>Create new user</legend>
+                        
+                        <label>Name</label>
+                        <input type="text">
+                        <label class="checkbox">
+                        <input type="checkbox"> Active
+                        </label>
+                        <button type="submit" class="btn">Submit</button>
+                      </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+          <!-- Templates for dynamic data-->
+        
+        <script type="text/template" id="all_user_template">
+             <tr>
+                <td><%= id %> </td>
+                <td><%= name %> </td>
+                <td class="status-td"><% if (isActive ) {%>
+                    <span class="label label-success"><i class="icon-thumbs-up icon-white status-icon"></i></span>
+                <% } else {%>
+                    <span class="label label-important"><i class="icon-thumbs-down icon-white status-icon"></i></span>
+                <% }%>
+                </td>
+            </tr>
+        </script>
+        
+        
+        <!-- Vendor Scripts-->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
+        <script src="js/vendor/underscore-min.js"></script>
+        <script src="js/vendor/backbone-1.0-min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        
+        <!-- App Scripts-->
+        <script src="js/models.js"></script>
+        <script src="js/collections.js"></script>
+        <script src="js/views.js"></script>
+        <script src="js/router.js"></script>
+        <script src="js/main.js"></script>
+       
+    </body>
+</html>
