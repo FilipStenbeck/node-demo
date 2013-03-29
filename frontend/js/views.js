@@ -62,7 +62,7 @@ app.UserView = Backbone.View.extend({
         
         var newUser = new app.User();
         newUser.set({id : newId, name : newName, isActive : newIsActive});
-        newUser.save({
+        newUser.save({},{
                         
             success: function (data) {
                 console.log("Saved!")
@@ -70,7 +70,7 @@ app.UserView = Backbone.View.extend({
                 app.userView.render();
             },
             error : function (e) {
-                console.log(e);             
+                console.log("fel");             
             }
             });
         

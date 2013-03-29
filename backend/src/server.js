@@ -95,12 +95,14 @@ app.get('/users/:command', function (req, res) {
 app.post('/users/:command', function (req, res) {
  res.setHeader('Access-Control-Allow-Origin', '*');
   addUser(req.body);
+  res.send("");
 });
 
 //Update user
 app.put('/users/:command', function (req, res) {
  res.setHeader('Access-Control-Allow-Origin', '*');
   addUser(req.body);
+   res.send("");
 });
 
 app.listen(3000);
