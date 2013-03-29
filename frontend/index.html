@@ -57,6 +57,7 @@
       
             <div class="row default-margin">
                 <div class="span5 offset1">
+					  <legend>All users</legend>
                     <table  id="user-table" class="table table-bordered table-striped ">        
                         <thead> 
                             <tr>
@@ -70,25 +71,23 @@
                         </tbody> 
                     </table>
                 </div>
-            </div>
-            
-             <div class="row default-margin">
-                   <div class="span10 offset1">
-                    <form id="new-user-form" class="form-inline" onsubmit="app.userView.newUser()" action="#">
+                <div class="span5 offset1">
+                    <form id="new-user-form" class="form-inline">
                       <fieldset>
                         <legend>Create new user</legend>
                         
                         <label>Name</label>
-                        <input type="text">
+                        <input id="nameField" type="text">
                         <label class="checkbox">
-                        <input type="checkbox"> Active
+                        <input id="isActive" type="checkbox"> Active
                         </label>
-                        <button type="submit" class="btn">Submit</button>
+                        <button id="newUserBtn" class="btn primary">Save</button>
                       </fieldset>
                     </form>
                 </div>
             </div>
-        </div>
+         </div>
+        
           <!-- Templates for dynamic data-->
         
         <script type="text/template" id="all_user_template">

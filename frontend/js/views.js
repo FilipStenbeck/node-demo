@@ -50,7 +50,29 @@ app.UserView = Backbone.View.extend({
         console.log(event.currentTarget);
     },
     newUser : function () {
-        console.log("New user");
+        var newId = _.last(app.userView.coll.models).get("id") +1;
+        var newName =  $('#nameField').val();
+        var newIsActive;
+        if ($('input:checkbox:checked').val()) {
+			newIsActive = true;
+		} else {
+			newIsActive = false;
+		}
+        console.log("DEBUG: New user, name: " + newName + " id:" + newId + " isActive :" + newIsActive);
+        
+        var newUser = new app.User();
+        newUser.set({id : newId, name : newName, isActive : newIsActive});
+        newUser.save({
+                        
+            success: function (data) {
+                console.log("Saved!")
+                app.userView.coll.add(newUser);
+                app.userView.render();
+            },
+            error : function (e) {
+                console.log(e);             
+            }
+            });
         
         $('#new-user-form')[0].reset();
         
@@ -58,7 +80,7 @@ app.UserView = Backbone.View.extend({
     },
     
     events: {
-         "click tr" : "changeStatus",
+         "click #newUserBtn" : "newUser",
          "onsubmit form" : "newUser"
   }
 });
