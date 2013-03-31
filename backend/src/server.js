@@ -26,61 +26,8 @@ var allowCrossDomain = function(req, res, next) {
 app.use(express.bodyParser());
 app.use(allowCrossDomain);
 
-/*
-* The Model
-*/
-
-var array = [
-        {id : 1, name : 'Filip', isActive : true},
-        {id : 2, name : 'Kalle', isActive : true},
-        {id : 3, name : 'Pelle', isActive : false},
-        {id : 4, name : 'Oskar', isActive : false},
-        {id : 5, name : 'Olle', isActive : true}
-    ];
-		
-/*
-* Function declarations
-*/
-
-var addUser = function addUser(user) {
-		var newId = _.last(array).id +1;
-		user.id = newId;
-		array.push(user);
-		return user;
-}
-
-var getActiveUsers = function getActiveUsers(req, res) {
-    var activeUsers = _.filter(array, function (obj) {
-        return obj.isActive === true;
-    });
-    res.send(activeUsers);
-};
-
-
-var removeUser = function removeUser(id, res) {
-    array = _.filter(array, function (obj) {
-        console.log(id + ' ' + obj.id);
-        return obj.id != id;
-    });
-    res.send(array);
-};
-
-
-var getSpecificUser = function getSpecificUser(id, req, res) {
-    var user;
-    if (id !== undefined) {
-        user = _.find(array, function(obj) {
-            if (obj.id == id) {
-                return obj;
-            }
-        });
-        if (user !== undefined) {
-            res.send(user);
-        } else {
-            res.send({message : 'User ' + id + ' was not found.'});
-        }
-    }
-};
+//Setting up the user db module
+var userData = require('./userData');
 
 /*
 * REST endpoints
@@ -88,37 +35,37 @@ var getSpecificUser = function getSpecificUser(id, req, res) {
 
 //Get all users
 app.get('/users', function (req, res) {
-    res.send(array);
+    res.send(userData.getAllUsers());
 });
-
 
 //Get specific user or active users
 app.get('/users/:command', function (req, res) {
     //Check if active users or specific user shall be calles
     if (req.params.command === 'active') {
-        getActiveUsers(req, res);
+        res.send(userData.getActiveUsers(req, res));
     } else if (isNaN(req.params.command)) {
         res.send({message : 'Command : ' + req.params.command + ' was not found.'});
     } else {
-       getSpecificUser(req.params.command, req, res);
+       res.send(userData.getSpecificUser(req.params.command, req, res));
     }
 });
-
 
 //Update or save new user
 app.put('/users/:command', function (req, res) {
  res.setHeader('Access-Control-Allow-Origin', '*');
-  user = addUser(req.body);
+  user = userData.addUser(req.body);
   res.send(user);
 });
 
 //Delete user
 app.delete('/users/:command', function (req, res) {
 	res.setHeader('Access-Control-Allow-Origin', '*');
-	removeUser(req.params.command, res);
+	res.send(userData.removeUser(req.params.command));
 });
 
-
-
 app.listen(3000);
-console.log('Listening on port 3000');
+
+console.log("");
+console.log("**********************************************");
+console.log('The server is listening on port 3000');
+console.log("**********************************************");
