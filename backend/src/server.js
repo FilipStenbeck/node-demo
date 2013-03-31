@@ -43,7 +43,10 @@ var array = [
 */
 
 var addUser = function addUser(user) {
+		var newId = _.last(array).id +1;
+		user.id = newId;
 		array.push(user);
+		return user;
 }
 
 var getActiveUsers = function getActiveUsers(req, res) {
@@ -52,6 +55,16 @@ var getActiveUsers = function getActiveUsers(req, res) {
     });
     res.send(activeUsers);
 };
+
+
+var removeUser = function removeUser(id, res) {
+    array = _.filter(array, function (obj) {
+        console.log(id + ' ' + obj.id);
+        return obj.id != id;
+    });
+    res.send(array);
+};
+
 
 var getSpecificUser = function getSpecificUser(id, req, res) {
     var user;
@@ -91,19 +104,21 @@ app.get('/users/:command', function (req, res) {
     }
 });
 
-//Save user
-app.post('/users/:command', function (req, res) {
- res.setHeader('Access-Control-Allow-Origin', '*');
-  addUser(req.body);
-  res.send("");
-});
 
-//Update user
+//Update or save new user
 app.put('/users/:command', function (req, res) {
  res.setHeader('Access-Control-Allow-Origin', '*');
-  addUser(req.body);
-   res.send("");
+  user = addUser(req.body);
+  res.send(user);
 });
+
+//Delete user
+app.delete('/users/:command', function (req, res) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	removeUser(req.params.command, res);
+});
+
+
 
 app.listen(3000);
 console.log('Listening on port 3000');

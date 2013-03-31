@@ -35,22 +35,16 @@ app.UserView = Backbone.View.extend({
                 console.log('DEBUG: Loaded ' + that.coll.models.length + ' users from server.');
                 that.render();
             },
-            error : function (collection) {
-                collection.reset(); 
-                $('.alert').addClass('alert-error');
-                $('.alert').html('Hoppsan något galet gick på tok...');             
+            error : function (error) {
+                console.log(error)         
             }
         });
     },
-    loaded : function (collection) {
-        
-               
+    loaded : function (collection) {           
     },
-    changeStatus : function (event) {
-        console.log(event.currentTarget);
-    },
+    
     newUser : function () {
-        var newId = _.last(app.userView.coll.models).get("id") +1;
+       
         var newName =  $('#nameField').val();
         var newIsActive;
         if ($('input:checkbox:checked').val()) {
@@ -58,29 +52,49 @@ app.UserView = Backbone.View.extend({
 		} else {
 			newIsActive = false;
 		}
-        console.log("DEBUG: New user, name: " + newName + " id:" + newId + " isActive :" + newIsActive);
-        
         var newUser = new app.User();
-        newUser.set({id : newId, name : newName, isActive : newIsActive});
-        newUser.save({},{
-                        
-            success: function (data) {
-                console.log("Saved!")
-                app.userView.coll.add(newUser);
+        newUser.set({id : "NEW", name : newName, isActive : newIsActive});
+        newUser.save({},{               
+            success: function (data) {  
+				app.userView.coll.add(data);
                 app.userView.render();
             },
             error : function (e) {
-                console.log("fel");             
+                console.log(e);             
             }
-            });
+		});
         
         $('#new-user-form')[0].reset();
         
         return false;
     },
     
+    deleteUser : function (event) {
+		var id = event.currentTarget.id;
+		id = id.charAt(id.length-1);
+
+		var user = _.find(app.userView.coll.models, function(obj) {
+			console.log(id);
+			if (obj.id == id) {
+                return obj;
+            }
+        });
+		
+		user.destroy({               
+            success: function (data) {  
+				console.log(data);
+				app.userView.coll.remove(data);
+                app.userView.render();
+            },
+            error : function (e) {
+                console.log(e);             
+            }
+		});
+		
+	},
+    
     events: {
          "click #newUserBtn" : "newUser",
-         "onsubmit form" : "newUser"
+         "click .delete-link" : "deleteUser"
   }
 });
