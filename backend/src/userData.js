@@ -21,7 +21,15 @@ console.log("");
 */
 
 exports.addUser = function addUser(user) {
-		var newId = _.last(array).id +1;
+		var newId, lastObj;
+		
+			lastObj = _.last(array);
+		
+		if (lastObj === undefined) {
+			newId = 1;
+		} else {
+			newId = lastObj.id +1;
+		}
 		user.id = newId;
 		array.push(user);
 		return user;

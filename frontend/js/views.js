@@ -55,8 +55,9 @@ app.UserView = Backbone.View.extend({
         var newUser = new app.User();
         newUser.set({id : "NEW", name : newName, isActive : newIsActive});
         newUser.save({},{               
-            success: function (data) {  
-				app.userView.coll.add(data);
+            success: function (data) {
+				newUser.set("id", data.id);  
+				app.userView.coll.add(newUser);
                 app.userView.render();
             },
             error : function (e) {
@@ -74,15 +75,13 @@ app.UserView = Backbone.View.extend({
 		id = id.charAt(id.length-1);
 
 		var user = _.find(app.userView.coll.models, function(obj) {
-			console.log(id);
 			if (obj.id == id) {
                 return obj;
             }
         });
-		
+        
 		user.destroy({               
             success: function (data) {  
-				console.log(data);
 				app.userView.coll.remove(data);
                 app.userView.render();
             },
@@ -95,6 +94,7 @@ app.UserView = Backbone.View.extend({
     
     events: {
          "click #newUserBtn" : "newUser",
+         "click #reloadBtn" : "loadAllUsers",
          "click .delete-link" : "deleteUser"
   }
 });
