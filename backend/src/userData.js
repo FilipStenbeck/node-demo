@@ -53,6 +53,11 @@ exports.removeUser = function removeUser(id) {
     return array;
 };
 
+exports.saveUser = function saveUser(user) {
+    array[user.id] = user;
+    return user;
+};
+
 exports.getSpecificUser = function getSpecificUser(id, req, res) {
     var user;
     if (id !== undefined) {

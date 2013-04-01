@@ -91,10 +91,24 @@ app.UserView = Backbone.View.extend({
 		});
 		
 	},
+	 editUser : function (event) {
+		var id = event.currentTarget.id;
+		id = id.charAt(id.length-1);
+
+		var user = _.find(app.userView.coll.models, function(obj) {
+			if (obj.id == id) {
+                return obj;
+            }
+        });
+        $('#editNameField').val(user.get("name"));
+        $('#editIsActive').attr('checked', user.get("isActive"));
+		
+	},
     
     events: {
          "click #newUserBtn" : "newUser",
          "click #reloadBtn" : "loadAllUsers",
-         "click .delete-link" : "deleteUser"
+         "click .delete-link" : "deleteUser",
+         "click .edit-link" : "editUser"
   }
 });

@@ -52,9 +52,14 @@ app.get('/users/:command', function (req, res) {
 
 //Update or save new user
 app.put('/users/:command', function (req, res) {
- res.setHeader('Access-Control-Allow-Origin', '*');
-  user = userData.addUser(req.body);
-  res.send(user);
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	var user = req.body;
+	if (user.id === "NEW") {
+		user = userData.addUser(user);
+	} else {
+		user = userData.saveUser(user);	
+	}
+	res.send(user);
 });
 
 //Delete user
