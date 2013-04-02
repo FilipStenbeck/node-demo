@@ -86,7 +86,7 @@ app.UserView = Backbone.View.extend({
 	},
 	 editUser : function (event) {
 		var id = event.currentTarget.id;
-		id = id.charAt(id.length - 1);
+		id = id.split("-")[1];
 
 		var user = _.find(app.userView.coll.models, function (obj) {
 			if (obj.id == id) {
