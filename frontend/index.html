@@ -61,15 +61,21 @@
 			  </div>
 			  <div class="modal-body">
 				
-				 <form id="edit-user-form" class="form-inline">
-                      <fieldset>
-                        <label class="form-fields">Name</label>
-                        <input class="form-fields" id="editNameField" type="text">
-                        <label class="checkbox">
-                        <input class="form-fields" id="editIsActive" type="checkbox"> Active
-                        </label>
-                        <button id="editUserBtn" class="btn-primary btn">Save</button>
-                      </fieldset>
+				 <form id="edit-user-form">
+                     
+                        <div class="controls controls-row">  
+                            <label>Id</label>
+                            <span class="input-small uneditable-input" id="editIdField" type="text"/>
+                        </div>
+                        <div class="controls controls-row">  
+                            <label >Name</label>
+                            <input  id="editNameField" type="text">
+                            <label class="checkbox">
+                                <input id="editIsActive" type="checkbox"> Active
+                            </label>
+                         </div>
+                        <button id="editUserBtn" class="btn-primary btn" onclick="app.userView.saveUser();" data-dismiss="modal">Save</button>
+                     
                     </form>       
 				
 			  </div>
