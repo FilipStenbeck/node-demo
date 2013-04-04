@@ -35,7 +35,6 @@ app.UserView = Backbone.View.extend({
         });
     },
     loaded : function (collection) {       
-        console.log("ddd");
         this.render();
     },
     
@@ -43,7 +42,7 @@ app.UserView = Backbone.View.extend({
        
         var newName =  $('#nameField').val();
         var newIsActive;
-        if ($('input:checkbox:checked').val()) {
+        if ($('#isActive:checked').val()) {
 			newIsActive = true;
 		} else {
 			newIsActive = false;
@@ -54,7 +53,7 @@ app.UserView = Backbone.View.extend({
             success: function (data) {
 				newUser.set("id", data.id);  
 				app.userView.coll.add(newUser);
-                app.userView.render();
+                app.userView.show();
             },
             error : function (e) {
                 console.log(e);             
@@ -67,6 +66,12 @@ app.UserView = Backbone.View.extend({
     },
     
     deleteUser : function (event) {
+        
+        //Reset url
+         if ($('#showActive:checked').val()) {
+            app.userView.coll.url = "http://127.0.0.1:3000/users"
+         }
+        
 		var id = event.currentTarget.id;
 		id = id.charAt(id.length-1);
 
@@ -78,8 +83,8 @@ app.UserView = Backbone.View.extend({
         
 		user.destroy({               
             success: function (data) {
-				app.userView.coll.remove(data);
-                app.userView.render();
+				
+                app.userView.show();
             },
             error : function (e) {
                 console.log(e);            
@@ -104,6 +109,12 @@ app.UserView = Backbone.View.extend({
 		
 	},
     saveUser : function (event) {
+        
+        //Reset url
+         if ($('#showActive:checked').val()) {
+            app.userView.coll.url = "http://127.0.0.1:3000/users"
+         }
+        
         var newName, newId, newIsActive, newUser;
         
         newName = $('#editNameField').val();
@@ -119,9 +130,10 @@ app.UserView = Backbone.View.extend({
             return obj.get("id") == newId;
         });
         newUser.set({name : newName, isActive : newIsActive});
+        
         newUser.save({}, {
             success: function (data) {
-                app.userView.render();
+                app.userView.show();
             },
             error : function (e) {
                 console.log(e);
