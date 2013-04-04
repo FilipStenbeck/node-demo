@@ -54,7 +54,12 @@ exports.removeUser = function removeUser(id) {
 };
 
 exports.saveUser = function saveUser(user) {
-    array[user.id] = user;
+    _.each(array, function(obj) {
+        if (obj.id == user.id) {
+            obj.name = user.name;
+            obj.isActive = user.isActive;
+        }
+    });
     return user;
 };
 

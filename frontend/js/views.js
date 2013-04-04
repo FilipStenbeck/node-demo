@@ -4,6 +4,7 @@ app.UserView = Backbone.View.extend({
    
     initialize: function () {
         this.coll = new app.UserCollection();
+        this.coll.on('sync', this.loaded, this);
     },
     el: $("#app_container"),
     render: function () {
@@ -34,6 +35,8 @@ app.UserView = Backbone.View.extend({
         });
     },
     loaded : function (collection) {       
+        console.log("ddd");
+        this.render();
     },
     
     newUser : function () {
@@ -125,10 +128,18 @@ app.UserView = Backbone.View.extend({
             }
 		});
     },
+    show : function (event) {
+        if ($('#showActive:checked').val()) {
+            app.userView.coll.showActive();
+        } else {
+            app.userView.coll.showAll();
+        }
+    },
     events: {
         "click #newUserBtn" : "newUser",
         "click #reloadBtn" : "loadAllUsers",
         "click .delete-link" : "deleteUser",
-        "click .edit-link" : "editUser"
+        "click .edit-link" : "editUser",
+        "click #showActive" : "show"
     }
 });
