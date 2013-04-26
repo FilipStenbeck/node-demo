@@ -1,15 +1,11 @@
 var app = app || {};
 
 app.UserRouter = Backbone.Router.extend({
-	  
-    
     routes: {
          "edit/:id": "editUser"
     },
-   
     editUser : function (id) {
-        console.log("ddd");
-        $('#editModal').modal('show')
+        $('#editModal').modal('show');
         app.userView.editUser(undefined, id);
     }
 });

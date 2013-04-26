@@ -69,7 +69,7 @@ app.UserView = Backbone.View.extend({
         
         //Reset url
          if ($('#showActive:checked').val()) {
-            app.userView.coll.url = "http://127.0.0.1:3000/users"
+            app.userView.coll.url = "http://127.0.0.1:3000/users";
          }
         
 		var id = event.currentTarget.id;
@@ -109,17 +109,17 @@ app.UserView = Backbone.View.extend({
 		
 	},
     saveUser : function (event) {
-        
+       var newName, newId, newIsActive, newUser;
         //Reset url
          if ($('#showActive:checked').val()) {
-            app.userView.coll.url = "http://127.0.0.1:3000/users"
+            app.userView.coll.url = "http://127.0.0.1:3000/users";
          }
         
-        var newName, newId, newIsActive, newUser;
+        
         
         newName = $('#editNameField').val();
         newId =   $('#editIdField').html();
-        newIsActive;
+        
         
         if ($('#editIsActive:checked').val()) {
 			newIsActive = true;
