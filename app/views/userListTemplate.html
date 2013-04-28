@@ -1,0 +1,22 @@
+<table  id="user-table" class="table table-bordered table-striped ">        
+    <thead> 
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody> 
+      <!-- Dynamic user data will be inserted here-->
+    <tr ng-repeat="user in users">
+        <td>{{user.id}}</td>
+        <td>{{user.name}}</td>
+        <td ng-switch on="user.isActive">
+            <span ng-switch-when=true class="label label-success"><i class="icon-thumbs-up icon-white status-icon" title="Active" ></i></span>
+            <span ng-switch-when=false class="label label-important"><i class="icon-thumbs-down icon-white status-icon" title="Inactive"></i></span>
+        </td>                           
+        <td>&nbsp;</td>
+    </tr>    
+    </tbody> 
+</table>
