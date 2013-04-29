@@ -4,11 +4,13 @@ var _ = require('underscore');
 * DATA
 */
 var array = [
-	{id : 1, name : 'Filip', isActive : true},
-	{id : 2, name : 'Kalle', isActive : true},
-	{id : 3, name : 'Pelle', isActive : false},
-	{id : 4, name : 'Oskar', isActive : false},
-	{id : 5, name : 'Olle', isActive : true}
+	{id : 1, name : 'Lasse', isActive : true},
+	{id : 2, name : 'Bosse', isActive : true},
+	{id : 3, name : 'Olle', isActive : false},
+	{id : 4, name : 'Lisa', isActive : false},
+	{id : 5, name : 'Britta', isActive : true},
+	{id : 6, name : 'Anna', isActive : true},
+	{id : 7, name : 'Kerstin', isActive : false}
 ];
 console.log("");
 console.log("**********************************************");
