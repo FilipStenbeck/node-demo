@@ -16,7 +16,7 @@
             <span ng-switch-when=true class="label label-success"><i class="icon-thumbs-up icon-white status-icon" title="Active" ></i></span>
             <span ng-switch-when=false class="label label-important"><i class="icon-thumbs-down icon-white status-icon" title="Inactive"></i></span>
         </td>                           
-        <td>&nbsp;</td>
+        <td> <a  href="#" ng-click="deleteUser(user.id, $event)">Delete</a>
     </tr>    
     </tbody> 
 </table>

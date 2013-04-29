@@ -1,11 +1,33 @@
-<div class="row default-margin">
-
-    <!-- Table listing users-->
-    <div class="span4">
-          <legend>All users</legend>
-        <user-list></user-list>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+	   <div class="container">
+		  <span class="title">Angular.js demo</span>
+        </div>
     </div>
 </div>
+        
+<div class="row default-margin app-container">
+   
+    <div class="span4">
+          <legend>All users</legend>
+        <user-list/>
+    </div>
+    
+    <div class="span6 offset1">
+        <form id="new-user-form" class="form-inline" ng:submit='newUser()'>
+          <fieldset>
+            <legend>Create new user</legend>  
+            <label class="form-fields">Name</label>
+            <input class="form-fields" id="nameField" type="text" ng-model="username" >
+            <label class="checkbox">
+            <input class="form-fields" id="isActive" ng-model="isActive" type="checkbox"> Active
+            </label>
+            <button class="btn primary">Save</button>
+          </fieldset>
+        </form>       
+    </div>
+</div>
+
 <div class="row default-margin">
     <div class="span2">
         <label class="checkbox">
@@ -14,4 +36,3 @@
     </div>
     <button id="reloadBtn" ng-click="onReload()" class="btn btn-primary">Reload</button>
 </div>
-

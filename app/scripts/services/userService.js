@@ -16,6 +16,14 @@ angular.module('frontendAngularApp')
             $http.get(url).success(function (data) { 
                 callback(data);
     	   });      
-        }
+        },
+        newUser : function (user, callback) {
+            
+            var url = ROOT_URL + "users/NEW";
+            $http.put(url, user).success(function (data) { 
+                callback(data);
+    	   });      
+        } 
+        
     };
 });

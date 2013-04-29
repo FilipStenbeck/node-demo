@@ -1,1 +1,16 @@
 @import "compass_twitter_bootstrap";
+
+.title {
+    float: left;
+    font-size: large;
+    color: rgb(130, 151, 162);
+    margin-top: 10px;
+}
+    
+.app-container {
+    margin-top: 100px;
+}
+    
+.default-margin {
+    margin-left: 5px !important;
+}
