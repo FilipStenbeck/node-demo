@@ -6,7 +6,14 @@ angular.module('frontendAngularApp')
    
     return {
         getUsers : function (onlyActive, callback) {
-            $http.get(ROOT_URL + "users").success(function (data) { 
+            
+            var url = ROOT_URL + "users";
+            
+            if (onlyActive) {
+                url = url + "/active";
+            }
+            
+            $http.get(url).success(function (data) { 
                 callback(data);
     	   });      
         }
