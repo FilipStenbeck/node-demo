@@ -62,6 +62,16 @@ app.put('/users/:command', function (req, res) {
 	res.send(user);
 });
 
+//New user
+app.post('/users', function (req, res) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	var user = req.body;
+	user = userData.addUser(user);
+	res.send(user);
+});
+
+
+
 //Delete user
 app.delete('/users/:command', function (req, res) {
 	res.setHeader('Access-Control-Allow-Origin', '*');

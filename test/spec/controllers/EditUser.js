@@ -1,22 +1,22 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: EditUserCtrl', function () {
 
   // load the controller's module
   beforeEach(module('frontendAngularApp'));
 
-  var MainCtrl,
+  var EditUserCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
+    EditUserCtrl = $controller('EditUserCtrl', {
       $scope: scope
     });
   }));
 
-  it('should be set to show all users', function () {
-    expect($scope.activeOnly).toBe(false);
+  it('Not the best test', function () {
+    expect(user).toBe(undefined);
   });
 });

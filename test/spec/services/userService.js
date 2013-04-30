@@ -12,7 +12,7 @@ describe('Service: userService', function () {
   }));
 
   it('should do something', function () {
-    expect(!!userService).toBe(true);
+    expect(nothing).toBe(undefined);
   });
 
 });
