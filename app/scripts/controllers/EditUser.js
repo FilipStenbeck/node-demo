@@ -8,7 +8,7 @@ angular.module('frontendAngularApp').controller('EditUserCtrl', function ($scope
         $scope.isActive = data.isActive;
         $scope.message = data.message;
     });
-      
+
     $scope.onSave = function () {
         var user = {
             id : $scope.id,
@@ -19,7 +19,7 @@ angular.module('frontendAngularApp').controller('EditUserCtrl', function ($scope
             $location.url("/");
         });
     };
-    
+
     $scope.onClose = function () {
         $location.url("/");
     };

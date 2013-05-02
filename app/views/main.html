@@ -1,14 +1,14 @@
 <div class="row default-margin app-container">
-   
+
     <div class="span4">
           <legend>All users</legend>
         <user-list/>
     </div>
-    
+
     <div class="span6 offset1">
         <form  class="form-inline" ng:submit='newUser()'>
           <fieldset>
-            <legend>Create new user</legend>  
+            <legend>Create new user</legend>
             <label class="form-fields">Name</label>
             <input class="form-fields" type="text" ng-model="username" >
             <label class="checkbox">
@@ -16,15 +16,15 @@
             </label>
             <button class="btn primary">Save</button>
           </fieldset>
-        </form>       
+        </form>
     </div>
 </div>
 
 <div class="row default-margin">
     <div class="span2">
         <label class="checkbox">
-            <input class="form-fields" ng-click="onReload()" ng-model="activeOnly" type="checkbox">Active users only
+            <input class="form-fields" ng-click="load()" ng-model="activeOnly" type="checkbox">Active users only
         </label>
     </div>
-    <button ng-click="onReload()" class="btn btn-primary">Reload</button>
+    <button ng-click="load()" class="btn btn-primary">Reload</button>
 </div>
