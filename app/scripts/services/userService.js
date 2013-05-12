@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('frontendAngularApp').factory('userService', function ($http) {
-    var ROOT_URL = 'http://localhost:3000/';
+    // var ROOT_URL = 'http://localhost:3000/';
+    var ROOT_URL = 'http://node-demo.nodejitsu.com/';
    
     return {
         getOneUser : function (id, callback) {

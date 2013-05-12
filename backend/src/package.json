@@ -1,9 +1,19 @@
 {
   "name": "node-demo",
   "description": "Small demo of a RESTfull server in node.js",
+  "subdomain": "node-demo",
   "version": "0.0.1",
   "private": true,
+  "scripts": {
+    "predeploy": "echo This will be run before deploying the app",
+    "postdeploy": "echo This will be run after deploying the app",
+    "start": "server.js"
+  },
+  "engines": {
+    "node": "0.8.x"
+  },
   "dependencies": {
-    "express": "3.x"
+    "express": "3.x",
+    "underscore": "1.4.x"
   }
 }
