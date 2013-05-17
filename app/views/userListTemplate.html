@@ -1,3 +1,12 @@
+
+<form  class="form-inline" ng:submit='newUser()'>
+          <fieldset>
+            <label>Filter on</label>
+            <input autofocus="autofocus" ng-model="searchText" type="text" class="form-fields">
+        </fieldset>
+</form>
+
+
 <table  id="user-table" class="table table-bordered table-striped ">        
     <thead> 
         <tr>
@@ -9,7 +18,7 @@
     </thead>
     <tbody> 
       <!-- Dynamic user data will be inserted here-->
-    <tr ng-repeat="user in users">
+    <tr ng-repeat="user in users | filter:searchText">
         <td>{{user.id}}</td>
         <td>{{user.name}}</td>
         <td ng-switch on="user.isActive">
