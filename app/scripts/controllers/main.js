@@ -3,8 +3,6 @@
 angular.module('frontendAngularApp').controller('MainCtrl', function ($scope,  $location, userService) {
     $scope.activeOnly = false;
 
-
-
     $scope.load = function () {
         userService.getUsers($scope.activeOnly, function (data) {
             $scope.users  = data;
@@ -20,7 +18,7 @@ angular.module('frontendAngularApp').controller('MainCtrl', function ($scope,  $
             isActive : $scope.isActive
         };
         userService.newUser(user, function (data) {
-            $scope.users.push(data);
+            $scope.load();
             $scope.isActive = false;
             $scope.username = '';
         });

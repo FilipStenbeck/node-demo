@@ -1,13 +1,12 @@
 
-<form  class="form-inline" ng:submit='newUser()'>
+<form   ng-show="users.length > 1" class="form-inline">
           <fieldset>
             <label>Filter on</label>
             <input autofocus="autofocus" ng-model="searchText" type="text" class="form-fields">
         </fieldset>
 </form>
 
-
-<table  id="user-table" class="table table-bordered table-striped ">        
+<table  ng-show="users.length > 0" class="table table-bordered table-striped ">        
     <thead> 
         <tr>
             <th>Id</th>
@@ -32,3 +31,16 @@
     </tr>    
     </tbody> 
 </table>
+
+<div ng-show="users.length > 0" class="row default-margin">
+    <div class="span2">
+        <label class="checkbox">
+            <input class="form-fields" ng-click="load()" ng-model="activeOnly" type="checkbox">Active users only
+        </label>
+    </div>
+    <button ng-click="load()" class="btn">Reload</button>
+</div>
+
+
+<div class="alert" ng-show="users.length == 0"> No users found in database.</div>
+
